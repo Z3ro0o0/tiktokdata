@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Add CSS styles for clicked links */
+        #video-container a.clicked {
+            color: black;
+        }
+    </style>
     <title>TikTok Video List</title>
 </head>
 <body>
@@ -25,7 +31,7 @@
 
         // Function to generate anchor tags for TikTok links with date
         function generateTikTokLinkWithDate(date, link) {
-            return `<p>${date}: <a href="${link}" target="_blank">${link}</a></p>`;
+            return `<p><a href="${link}" target="_blank">${date}: ${link}</a></p>`;
         }
 
         // Get the video container element
@@ -42,6 +48,12 @@
                 // Create a div element for each link and append it to the video container
                 var videoDiv = document.createElement('div');
                 videoDiv.innerHTML = videoLinkWithDate;
+
+                // Add a click event listener to change the color after clicking
+                var videoLink = videoDiv.querySelector('a');
+                videoLink.addEventListener('click', function () {
+                    videoLink.classList.add('clicked');
+                });
 
                 // Append the video div to the video container
                 videoContainer.appendChild(videoDiv);
